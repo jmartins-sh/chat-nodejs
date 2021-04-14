@@ -51,6 +51,14 @@
         {
             renderMessage(message);
         });
+
+        socket.on('previousMessages', (messages) => 
+        {
+            for(message of messages) 
+            {
+                renderMessage(message);
+            }
+        });
     </script>
 </body>
 </html>

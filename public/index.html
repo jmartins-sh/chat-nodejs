@@ -18,5 +18,9 @@
         <input type="text" name="message" id="Digite sua mensagem"> 
         <button type="submit">Send</button>
     </form>
+
+    <script>
+        var socket = io('<%= socketServerAddress %>');
+    </script>
 </body>
 </html>

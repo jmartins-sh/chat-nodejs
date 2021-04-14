@@ -13,7 +13,15 @@ app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
 app.get('/', (req, res) => {
-    res.render('index.html');
+    var socketServerAddress = process.env.SOCKETSERVER || `http://localhost:${PORT}`
+
+    res.render('index.html', {
+        socketServerAddress: socketServerAddress
+    });
+});
+
+io.on('connection', socket => {
+    console.log(`New socket ${socket.id}`);
 });
 
 webServer.listen(PORT, () => {

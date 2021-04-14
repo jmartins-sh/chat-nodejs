@@ -29,7 +29,10 @@ io.on('connection', socket =>
     socket.emit('previousMessages', messages);
 
     socket.on('sendMessage', (message) => 
-    {        
+    {       
+        if(messages.length > 50)
+            messages.shift()
+
         messages.push(message);
 
         socket.broadcast.emit('receivedMessage', message);

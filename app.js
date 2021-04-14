@@ -22,13 +22,17 @@ app.get('/', (req, res) =>
     });
 });
 
+let messages = [];
+
 io.on('connection', socket => 
 {
     console.log(`New socket ${socket.id}`);
 
     socket.on('sendMessage', (message) => 
-    {
-        console.log(message);
+    {        
+        messages.push(message);
+
+        socket.broadcast.emit('receivedMessage', message);
     });
 });
 

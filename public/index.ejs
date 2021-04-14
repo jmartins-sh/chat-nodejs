@@ -14,13 +14,18 @@
 <body>
     <form id="chat">
         <input type="text" name="username" placeholder="Digite seu nome"> 
-        <div class="message"></div>
+        <div class="messages"></div>
         <input type="text" name="message" id="Digite sua mensagem"> 
         <button type="submit">Send</button>
     </form>
 
     <script>        
         var socket = io('<%= socketServerAddress %>');
+        
+        function renderMessage(message)
+        {
+            $('.messages').append('<div class="message"><strong>'+ message.author +'</strong>: '+ message.message +'</div>');
+        }
 
         $('#chat').submit((event) => 
         {
@@ -35,9 +40,16 @@
                     author,
                     message
                 };
+                
+                renderMessage(newMessage);
 
                 socket.emit('sendMessage', newMessage);
             }
+        });
+
+        socket.on('receivedMessage', (message) => 
+        {
+            renderMessage(message);
         });
     </script>
 </body>

@@ -44,4 +44,5 @@ html, body {
     margin: 2vw 0;
     border: 1px solid #ddd;
     padding: 2vw;
+    overflow-y: auto;
   }

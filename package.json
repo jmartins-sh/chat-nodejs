@@ -4,7 +4,8 @@
   "description": "A project to play with websockets in nodejs for a web chat app",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"    
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "João Martins",
   "license": "ISC",

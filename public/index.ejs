@@ -22,7 +22,23 @@
     <script>        
         var socket = io('<%= socketServerAddress %>');
 
-        
+        $('#chat').submit((event) => 
+        {
+            event.preventDefault();
+
+            var author = $('input[name=username]').val();
+            var message = $('input[name=message]').val();
+
+            if(author.length && message.length)
+            {
+                var newMessage = {
+                    author,
+                    message
+                };
+
+                socket.emit('sendMessage', newMessage);
+            }
+        });
     </script>
 </body>
 </html>

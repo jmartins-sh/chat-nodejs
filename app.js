@@ -12,18 +12,27 @@ app.set('views', path.join(__dirname, 'public'));
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res) => {
+app.get('/', (req, res) => 
+{
     var socketServerAddress = process.env.SOCKETSERVER || `http://localhost:${PORT}`
 
-    res.render('index.ejs', {
+    res.render('index.ejs', 
+    {
         socketServerAddress: socketServerAddress
     });
 });
 
-io.on('connection', socket => {
+io.on('connection', socket => 
+{
     console.log(`New socket ${socket.id}`);
+
+    socket.on('sendMessage', (message) => 
+    {
+        console.log(message);
+    });
 });
 
-webServer.listen(PORT, () => {
+webServer.listen(PORT, () => 
+{
     console.log(`App is running on port: ${PORT}`)
 });

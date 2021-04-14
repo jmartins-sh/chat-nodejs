@@ -10,12 +10,12 @@ const io = require('socket.io')(webServer);
 app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'public'));
 app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 app.get('/', (req, res) => {
     var socketServerAddress = process.env.SOCKETSERVER || `http://localhost:${PORT}`
 
-    res.render('index.html', {
+    res.render('index.ejs', {
         socketServerAddress: socketServerAddress
     });
 });

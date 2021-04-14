@@ -30,7 +30,7 @@ io.on('connection', socket =>
 
     socket.on('sendMessage', (message) => 
     {       
-        if(messages.length > 50)
+        if(messages.length > 40)
             messages.shift()
 
         messages.push(message);
